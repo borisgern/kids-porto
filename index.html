@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Детские проекты в Порту</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@400;600;700;800&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terracotta: #C2704A;
+    --terracotta-light: #E8A87C;
+    --deep-blue: #2A3D66;
+    --ocean: #4A7C8F;
+    --cream: #FDF6EC;
+    --warm-white: #FAF3E8;
+    --sand: #E8DCC8;
+    --sage: #7A9E7E;
+    --coral: #E07A5F;
+    --gold: #D4A847;
+    --charcoal: #2D2D2D;
+    --tile-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C2704A' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+    background-image: var(--tile-pattern);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--terracotta-light) 0%, transparent 70%);
+    opacity: 0.3;
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--ocean) 0%, transparent 70%);
+    opacity: 0.15;
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -20px) scale(1.05); }
+  }
+
+  .hero-badge {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: var(--deep-blue);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 span {
+    display: inline-block;
+    color: var(--terracotta);
+    position: relative;
+  }
+
+  .hero h1 span::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: var(--gold);
+    opacity: 0.4;
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  .hero-sub {
+    font-size: 1.25rem;
+    color: var(--ocean);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: var(--terracotta);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 20px rgba(194, 112, 74, 0.3);
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(194, 112, 74, 0.4);
+    background: var(--coral);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--ocean);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s, bounce 2s ease infinite 2s;
+    z-index: 1;
+    text-decoration: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2.5rem 2rem;
+    background: var(--deep-blue);
+    color: white;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-tag {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: var(--terracotta);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--deep-blue);
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--ocean);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ===== PROJECT CARDS ===== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .project-card[data-color="terracotta"]::before { background: var(--terracotta); }
+  .project-card[data-color="ocean"]::before { background: var(--ocean); }
+  .project-card[data-color="sage"]::before { background: var(--sage); }
+  .project-card[data-color="coral"]::before { background: var(--coral); }
+  .project-card[data-color="gold"]::before { background: var(--gold); }
+  .project-card[data-color="deep-blue"]::before { background: var(--deep-blue); }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-card[data-color="terracotta"] .card-icon { background: #fef0e7; }
+  .project-card[data-color="ocean"] .card-icon { background: #e8f4f7; }
+  .project-card[data-color="sage"] .card-icon { background: #edf5ee; }
+  .project-card[data-color="coral"] .card-icon { background: #fce8e3; }
+  .project-card[data-color="gold"] .card-icon { background: #fdf4e0; }
+  .project-card[data-color="deep-blue"] .card-icon { background: #e8ecf3; }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--deep-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-person {
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .card-tag {
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--warm-white);
+    color: var(--ocean);
+    border: 1px solid var(--sand);
+  }
+
+  /* ===== IDEAS SECTION ===== */
+  .ideas-section {
+    background: var(--deep-blue);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ideas-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .ideas-section .section-header { position: relative; z-index: 1; }
+  .ideas-section .section-tag { color: var(--gold); }
+  .ideas-section .section-title { color: white; }
+  .ideas-section .section-desc { color: rgba(255,255,255,0.7); }
+
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .idea-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .idea-card:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+  }
+
+  .idea-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .idea-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .idea-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ===== PEOPLE ===== */
+  .people-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  .person-bubble {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .person-bubble:hover { transform: translateY(-4px); }
+
+  .person-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .person-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--deep-blue);
+  }
+
+  .person-role {
+    font-family: 'Caveat', cursive;
+    font-size: 0.85rem;
+    color: var(--ocean);
+    text-align: center;
+    max-width: 120px;
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    color: var(--deep-blue);
+    margin-bottom: 1rem;
+  }
+
+  .cta-desc {
+    font-size: 1.1rem;
+    color: var(--ocean);
+    max-width: 550px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: var(--deep-blue);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(42, 61, 102, 0.3);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(42, 61, 102, 0.4);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    color: var(--ocean);
+    opacity: 0.7;
+  }
+
+  footer a { color: var(--terracotta); text-decoration: none; }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .ideas-grid { grid-template-columns: 1fr; }
+    .stats-bar { gap: 1.5rem; }
+    .stat-number { font-size: 2rem; }
+    .section { padding: 3.5rem 1.5rem; }
+    .ideas-section { padding: 3.5rem 1.5rem; }
+    .people-strip { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Porto, Portugal ~ 2026</div>
+  <h1>Детские проекты<br>в <span>Порту</span></h1>
+  <p class="hero-sub">Русскоязычное сообщество творческих студий, кружков и мастерских для детей от 3 до 16 лет. Вместе создаем среду, в которой дети растут.</p>
+  <a href="#projects" class="hero-cta">Все проекты &#8595;</a>
+  <a href="#projects" class="hero-scroll">листай вниз &#8595;</a>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number">12+</div>
+    <div class="stat-label">проектов</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">3-16</div>
+    <div class="stat-label">лет</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">10+</div>
+    <div class="stat-label">педагогов</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">Porto</div>
+    <div class="stat-label">& Gaia & Matosinhos</div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-header reveal">
+    <div class="section-tag">что есть для детей</div>
+    <h2 class="section-title">Проекты и студии</h2>
+    <p class="section-desc">Творчество, наука, языки, спорт - каждый проект создан людьми, которые горят своим делом</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Handy -->
+    <div class="project-card reveal" data-color="coral">
+      <div class="card-icon">&#127912;</div>
+      <div class="card-title">Handy / Хэнди</div>
+      <div class="card-person">Полина & Паша</div>
+      <div class="card-desc">Творческая студия: дизайн-мышление, художка с Яной (архитектор), театр с Настей, музыка. Игровая педагогика, Юля Волжанкина (игротерапевт). Творческие ДР, летний лагерь (3-й сезон), "Дети в Хэнди" по пятницам-субботам на 4+ часа.</div>
+      <div class="card-tags">
+        <span class="card-tag">3-15 лет</span>
+        <span class="card-tag">дизайн-мышление</span>
+        <span class="card-tag">художка</span>
+        <span class="card-tag">театр</span>
+        <span class="card-tag">музыка</span>
+        <span class="card-tag">лагерь</span>
+      </div>
+    </div>
+
+    <!-- Robotics -->
+    <div class="project-card reveal" data-color="ocean">
+      <div class="card-icon">&#129302;</div>
+      <div class="card-title">RoboKittens</div>
+      <div class="card-person">Радмир & Нара</div>
+      <div class="card-desc">Робототехника, программирование, инженерия. Дети собирают, паяют, понимают, как что работает. Пространство в Гайе с йогой и вязанием. Наука и эксперименты: "чтобы дети видели, трогали, участвовали". Летние лагеря, мастер-классы.</div>
+      <div class="card-tags">
+        <span class="card-tag">6+ лет</span>
+        <span class="card-tag">робототехника</span>
+        <span class="card-tag">программирование</span>
+        <span class="card-tag">инженерия</span>
+        <span class="card-tag">Gaia</span>
+      </div>
+    </div>
+
+    <!-- MindUp -->
+    <div class="project-card reveal" data-color="sage">
+      <div class="card-icon">&#128295;</div>
+      <div class="card-title">MindUp</div>
+      <div class="card-person">Юлия & Виктория</div>
+      <div class="card-desc">Украинская франшиза инженерных курсов. Дети паяют, клеят, вырезают, раскрашивают - всесторонний подход к проектам. Мастер-классы (1-1.5 часа) и полноценные проекты (4-8 занятий). Группы на русском, английском, португальском.</div>
+      <div class="card-tags">
+        <span class="card-tag">3-10 лет</span>
+        <span class="card-tag">инженерия</span>
+        <span class="card-tag">мастер-классы</span>
+        <span class="card-tag">проекты</span>
+        <span class="card-tag">франшиза</span>
+      </div>
+    </div>
+
+    <!-- Detective Club -->
+    <div class="project-card reveal" data-color="deep-blue">
+      <div class="card-icon">&#128269;</div>
+      <div class="card-title">Детективный клуб</div>
+      <div class="card-person">Инна</div>
+      <div class="card-desc">Детективные игры для русскоязычных детей. Расследования, загадки, дедукция - всё для поддержания и развития русского языка через увлекательный формат. Сейчас онлайн, планируются оффлайн-встречи.</div>
+      <div class="card-tags">
+        <span class="card-tag">9-12 лет</span>
+        <span class="card-tag">русский язык</span>
+        <span class="card-tag">детективы</span>
+        <span class="card-tag">онлайн</span>
+      </div>
+    </div>
+
+    <!-- Chinese Language -->
+    <div class="project-card reveal" data-color="coral">
+      <div class="card-icon">&#127983;</div>
+      <div class="card-title">Китайский язык</div>
+      <div class="card-person">Инна</div>
+      <div class="card-desc">20+ лет преподавания китайского. Не для того, чтобы выучить с нуля, а чтобы попробовать: культура, иероглифы, базовые фразы. Идеальный формат для знакомства с новой культурой через язык и чайные церемонии.</div>
+      <div class="card-tags">
+        <span class="card-tag">6+ лет</span>
+        <span class="card-tag">китайский</span>
+        <span class="card-tag">культура</span>
+        <span class="card-tag">язык</span>
+      </div>
+    </div>
+
+    <!-- Russian Literature -->
+    <div class="project-card reveal" data-color="gold">
+      <div class="card-icon">&#128218;</div>
+      <div class="card-title">Русский язык и литература</div>
+      <div class="card-person">Наталья</div>
+      <div class="card-desc">Филолог с 25-летним стажем. Кросс-предметность: виртуальные прогулки по Эрмитажу, креативное письмо (creative writing), история искусства. Дети не замечают, что учатся - они сочиняют, исследуют, расширяют лексический запас.</div>
+      <div class="card-tags">
+        <span class="card-tag">6-13 лет</span>
+        <span class="card-tag">русский язык</span>
+        <span class="card-tag">литература</span>
+        <span class="card-tag">creative writing</span>
+        <span class="card-tag">искусство</span>
+      </div>
+    </div>
+
+    <!-- Leadership -->
+    <div class="project-card reveal" data-color="terracotta">
+      <div class="card-icon">&#127942;</div>
+      <div class="card-title">Лидерская программа для подростков</div>
+      <div class="card-person">Николай</div>
+      <div class="card-desc">Курс по психологии без терапии: типы личности, эмоциональный интеллект, роли в группах, ТРИЗ, Agile, социальное проектирование. Мечта - создать безопасное пространство, куда подростки приходят общаться с экспертами.</div>
+      <div class="card-tags">
+        <span class="card-tag">12-17 лет</span>
+        <span class="card-tag">soft skills</span>
+        <span class="card-tag">психология</span>
+        <span class="card-tag">лидерство</span>
+        <span class="card-tag">тренинги</span>
+      </div>
+    </div>
+
+    <!-- Ceramics -->
+    <div class="project-card reveal" data-color="terracotta">
+      <div class="card-icon">&#127843;</div>
+      <div class="card-title">Керамика</div>
+      <div class="card-person">Таня (керамистка)</div>
+      <div class="card-desc">Профессиональный керамист-технолог: все техники, каждое занятие - что-то новое. Для детей постарше: не игра в глину, а настоящая работа с материалом. Работала в Luz Porto, ищет свое пространство.</div>
+      <div class="card-tags">
+        <span class="card-tag">8+ лет</span>
+        <span class="card-tag">керамика</span>
+        <span class="card-tag">глина</span>
+        <span class="card-tag">ремесло</span>
+      </div>
+    </div>
+
+    <!-- Dance -->
+    <div class="project-card reveal" data-color="sage">
+      <div class="card-icon">&#128131;</div>
+      <div class="card-title">Хореография и танцы</div>
+      <div class="card-person">Таня (хореограф)</div>
+      <div class="card-desc">Хореограф из Харькова с опытом работы с детьми 3-16 лет. Народные + современные танцы, контемпорари. Также организация детских ДР (квесты, приключения). Ищет партнеров и пространство - возможно, зал в Handy.</div>
+      <div class="card-tags">
+        <span class="card-tag">3-16 лет</span>
+        <span class="card-tag">танцы</span>
+        <span class="card-tag">контемпорари</span>
+        <span class="card-tag">хореография</span>
+      </div>
+    </div>
+
+    <!-- Spirit / Quests -->
+    <div class="project-card reveal" data-color="ocean">
+      <div class="card-icon">&#127915;</div>
+      <div class="card-title">Spirit Lab - квесты и приключения</div>
+      <div class="card-person">Борис</div>
+      <div class="card-desc">Тематические квесты для детей через игровой формат и нарратив: загадки, головоломки, исследования. AI и технологии для детей. Эпизодические ивенты под конкретную тему, а не регулярный кружок.</div>
+      <div class="card-tags">
+        <span class="card-tag">4-10 лет</span>
+        <span class="card-tag">квесты</span>
+        <span class="card-tag">AI</span>
+        <span class="card-tag">приключения</span>
+        <span class="card-tag">ивенты</span>
+      </div>
+    </div>
+
+    <!-- Catering -->
+    <div class="project-card reveal" data-color="gold">
+      <div class="card-icon">&#127858;</div>
+      <div class="card-title">Детский кейтеринг</div>
+      <div class="card-person">Света</div>
+      <div class="card-desc">Блины, сосиски в тесте, детские позиции для мероприятий. Кулинарные мастер-классы с детьми: жарим блинчики и беточки вместе. Коллаборации на детских праздниках, лагерях, ретритах.</div>
+      <div class="card-tags">
+        <span class="card-tag">все возрасты</span>
+        <span class="card-tag">еда</span>
+        <span class="card-tag">мастер-классы</span>
+        <span class="card-tag">мероприятия</span>
+      </div>
+    </div>
+
+    <!-- Kreatorstvo -->
+    <div class="project-card reveal" data-color="deep-blue">
+      <div class="card-icon">&#127908;</div>
+      <div class="card-title">Креаторство и музыка</div>
+      <div class="card-person">Handy + Света Бордюк</div>
+      <div class="card-desc">Курс для подростков: создание собственной музыки, совместно с актрисой из Питера и музыкантами (включая Хамиля как приглашенного). Запускается в Хэнди для подростков и, возможно, для взрослых.</div>
+      <div class="card-tags">
+        <span class="card-tag">12+ лет</span>
+        <span class="card-tag">музыка</span>
+        <span class="card-tag">продакшн</span>
+        <span class="card-tag">подростки</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IDEAS -->
+<section class="ideas-section" id="ideas">
+  <div class="section-header">
+    <div class="section-tag">идеи из встречи 22 апреля</div>
+    <h2 class="section-title">Что хотим сделать вместе</h2>
+    <p class="section-desc">Коллаборации и идеи, которые родились на встрече</p>
+  </div>
+
+  <div class="ideas-grid">
+
+    <div class="idea-card reveal">
+      <div class="idea-icon">&#127914;</div>
+      <div class="idea-title">Образовательный фест</div>
+      <div class="idea-desc">Не ярмарка! Фест, куда родители приходят познакомиться со всеми проектами. Сайт-агрегатор по категориям: STEM, арты, языки, спорт. Конец мая - начало лета.</div>
+    </div>
+
+    <div class="idea-card reveal">
+      <div class="idea-icon">&#127968;</div>
+      <div class="idea-title">Детский центр полного дня</div>
+      <div class="idea-desc">Привести ребенка на 4-6 часов: сначала рисование, потом робототехника, потом театр. Не нанимать няню, а оставить в среде, которой доверяешь. "Создаем свою деревню".</div>
+    </div>
+
+    <div class="idea-card reveal">
+      <div class="idea-icon">&#9978;&#65039;</div>
+      <div class="idea-title">Семейный выездной лагерь</div>
+      <div class="idea-desc">Выезд с родителями: утром - раздельная программа (взрослым свое, детям свое), вечером - общая. Йога, робототехника, творчество, кулинария. Палатки или домики.</div>
+    </div>
+
+    <div class="idea-card reveal">
+      <div class="idea-icon">&#127760;</div>
+      <div class="idea-title">Тематические встречи по странам</div>
+      <div class="idea-desc">Погружение в культуру через еду и творчество: японский вечер с суши, китайская церемония, мексиканский день. Особенно хит для подростков.</div>
+    </div>
+
+    <div class="idea-card reveal">
+      <div class="idea-icon">&#128187;</div>
+      <div class="idea-title">Сайт-агрегатор</div>
+      <div class="idea-desc">Единый ресурс: все детские проекты, расписания, ссылки. Чтобы когда кто-то спрашивает "где в Порту с детьми?", кидать одну ссылку. Возможно, с AI-рекомендациями по возрасту.</div>
+    </div>
+
+    <div class="idea-card reveal">
+      <div class="idea-icon">&#128161;</div>
+      <div class="idea-title">Воскресная школа</div>
+      <div class="idea-desc">Формат полудня: русский язык, математика, чтение - всё вместе. Для детей, которые не ходят в русскую школу. Особенно актуально для дошкольников.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="section" id="people">
+  <div class="section-header reveal">
+    <div class="section-tag">кто мы</div>
+    <h2 class="section-title">Люди сообщества</h2>
+    <p class="section-desc">Каждый принес сюда свой опыт, свою энергию и свою мечту</p>
+  </div>
+
+  <div class="people-strip reveal">
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--coral);">&#128075;</div>
+      <div class="person-name">Таня Степанова</div>
+      <div class="person-role">Kollaba, Афиша Порту</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--ocean);">&#129302;</div>
+      <div class="person-name">Радмир</div>
+      <div class="person-role">RoboKittens, робототехника</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--sage);">&#128269;</div>
+      <div class="person-name">Инна</div>
+      <div class="person-role">Детективный клуб, китайский</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--deep-blue);">&#127915;</div>
+      <div class="person-name">Борис</div>
+      <div class="person-role">Квесты, AI, технологии</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--gold);">&#127858;</div>
+      <div class="person-name">Света</div>
+      <div class="person-role">Кейтеринг, коллаборации</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--terracotta);">&#127843;</div>
+      <div class="person-name">Таня</div>
+      <div class="person-role">Керамика, технолог</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--coral);">&#128218;</div>
+      <div class="person-name">Наталья</div>
+      <div class="person-role">Русский, литература, искусство</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--ocean);">&#127942;</div>
+      <div class="person-name">Николай</div>
+      <div class="person-role">Лидерство, тренинги для подростков</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--sage);">&#128295;</div>
+      <div class="person-name">Юлия</div>
+      <div class="person-role">MindUp, инженерные курсы</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--terracotta);">&#128131;</div>
+      <div class="person-name">Таня</div>
+      <div class="person-role">Хореография, танцы</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--deep-blue);">&#127912;</div>
+      <div class="person-name">Полина</div>
+      <div class="person-role">Handy, дизайн-мышление</div>
+    </div>
+    <div class="person-bubble">
+      <div class="person-avatar" style="background: var(--gold);">&#128131;</div>
+      <div class="person-name">Нара</div>
+      <div class="person-role">RoboKittens, йога</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title reveal">Присоединяйтесь</h2>
+  <p class="cta-desc reveal">Мы открыты для новых людей, идей и коллабораций. Если вы делаете что-то для детей в Порту - вам сюда.</p>
+  <a href="https://t.me/" class="cta-btn reveal">Написать в чат сообщества</a>
+</section>
+
+<footer>
+  <p>Детские проекты в Порту &middot; 2026 &middot; Собрано с любовью на встрече в <a href="#">Коллабе</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger cards
+  document.querySelectorAll('.projects-grid .project-card, .ideas-grid .idea-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.08}s`;
+  });
+</script>
+
+</body>
+</html>
