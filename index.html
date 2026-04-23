@@ -556,13 +556,45 @@
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .ideas-grid { grid-template-columns: 1fr; }
-    .stats-bar { gap: 1.5rem; }
-    .stat-number { font-size: 2rem; }
-    .section { padding: 3.5rem 1.5rem; }
-    .ideas-section { padding: 3.5rem 1.5rem; }
-    .people-strip { gap: 1.25rem; }
+    .hero { padding: 1.5rem; min-height: 90vh; }
+    .hero h1 { font-size: 2.4rem; }
+    .hero-sub { font-size: 1.05rem; }
+    .hero-cta { padding: 0.85rem 2rem; font-size: 1rem; }
+    .hero::before { width: 300px; height: 300px; }
+    .hero::after { width: 200px; height: 200px; }
+
+    .stats-bar { gap: 1rem; padding: 1.5rem 1rem; }
+    .stat-number { font-size: 1.8rem; }
+    .stat-label { font-size: 0.8rem; }
+
+    .section { padding: 3rem 1.25rem; }
+    .section-title { font-size: 1.8rem; }
+    .section-desc { font-size: 1rem; }
+
+    .projects-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .project-card { padding: 1.5rem; }
+    .card-title { font-size: 1.2rem; }
+
+    .ideas-section { padding: 3rem 1.25rem; }
+    .ideas-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .idea-card { padding: 1.25rem; }
+
+    .people-strip { gap: 1rem; }
+    .person-avatar { width: 60px; height: 60px; font-size: 1.3rem; }
+    .person-name { font-size: 0.82rem; }
+    .person-role { font-size: 0.72rem; max-width: 100px; }
+
+    .cta-section { padding: 4rem 1.5rem; }
+    .cta-title { font-size: 1.6rem; }
+    .cta-desc { font-size: 1rem; }
+    .cta-btn { padding: 0.85rem 2rem; font-size: 1rem; }
+  }
+
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 2rem; }
+    .stats-bar { flex-direction: column; gap: 0.75rem; }
+    .people-strip { gap: 0.75rem; }
+    .person-avatar { width: 52px; height: 52px; font-size: 1.1rem; }
   }
 </style>
 </head>
